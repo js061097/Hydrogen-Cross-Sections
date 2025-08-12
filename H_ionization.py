@@ -1,5 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
+import pandas as pd
 
 n = np.array([1,2,3])
 
@@ -32,4 +33,12 @@ plt.ylabel('Cross-section '+'$(\mathrm{m}^{2})$')
 plt.xlabel('Energy ' + '$(eV)$')
 plt.title('Ionization Cross-section for electronically excited atomic H')
 plt.legend()
-plt.show()
+#plt.show()
+
+
+import csv
+for i in range(0,3):
+    with open('Hn'+str(i+1)+'_ionization.csv', 'w', newline='') as csvfile:
+        filewriter = csv.writer(csvfile, delimiter='\t')
+        for j in range(0,np.shape(x_vals)[1]):
+            filewriter.writerow([x_vals[i][j],y_vals[i][j]])
